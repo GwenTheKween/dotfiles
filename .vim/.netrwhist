@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/billionai/qemu/meson'
+let g:netrw_dirhist_2='/home/billionai/qemu/target/ppc'
+let g:netrw_dirhist_3='/home/billionai/qemu/target/i386/tcg'
+let g:netrw_dirhist_4='/home/billionai/qemu/target/i386/kvm'
+let g:netrw_dirhist_5='/home/billionai/qemu/tests/qemu-iotests'
+let g:netrw_dirhist_6='/home/billionai/qemu/target/ppc/translate'

@@ -1,0 +1,66 @@
+#!/bin/bash
+
+function qemu(){
+	if [[ "$#" -eq 1 && "$1" != "-h" ]]
+	then
+		#adds options for cdrom boot, if a path for the ROM is given
+		BOOTOPTS="-boot d -cdrom $1"
+	elif [[ "$#" -gt 0 ]]
+	then
+		echo "usage: $0 [path/to/image]. If a path to an image is given, qemu is ran with that as boot image, to install the OS. Otherwise, runs command without boot option"
+		return 0
+	else
+		BOOTOPTS=""
+	fi
+
+	sudo $EXECUTABLE -name $VMNAME -enable-kvm -cpu $CPUARCH -smp $CORECOUNT -m "$MEMORY"g -machine pseries,cap-nested-hv=on,cap-cfpc=broken,cap-sbbc=broken,cap-ibs=broken,cap-ccf-assist=off -mem-prealloc -mem-path /dev/hugepages -device virtio-scsi-pci -drive file=$DISCNAME,if=none,format=qcow2,id=hd0 -device scsi-hd,drive=hd0 -vga none -nographic -device virtio-net,netdev=vmnic -netdev user,id=vmnic,hostfwd=tcp:127.0.0.1:$SSHPORT-:22 -global virtio-pci.disable-modern=on -gdb tcp::$GDBPORT $BOOTOPTS
+}
+
+function assign(){
+	local USAGE="$0 variable_to_assign new_value"
+	case "$#" in
+		0|1) echo $USAGE;;
+		2) 
+			[ -z "$(eval echo \$"$1")" ] && return 1
+			#if the variable exists, assign a value.
+			#THIS FUNCTION DOES NOT GUARANTEE THAT THE VARIABLE ONLY REFERS TO THIS SCRIPT
+			echo "changing $1 from $(eval echo \$"$1") to $2"
+			eval $1=$2;;
+		*) echo $USAGE;;
+	esac
+}
+
+function listVars(){
+	echo "CORECOUNT $CORECOUNT"
+	echo "MEMORY $MEMORY"
+	echo "EXECUTABLE $EXECUTABLE"
+	echo "VMNAME $VMNAME"
+	echo "CPUARCH $CPUARCH"
+	echo "DISCNAME $DISCNAME"
+	echo "SSHPORT $SSHPORT"
+	echo "GDBPORT $GDBPORT"
+}
+
+#MOST LIKELY VARIABLES TO BE CHANGED
+#how many cpu cores for the VM
+CORECOUNT="20"
+
+#how much memory for the VM
+MEMORY="2"
+
+#UNLIKELY TO CHANGE, BUT MAY NEED
+#which qemu executable will be called
+EXECUTABLE="/usr/bin/qemu-system-ppc64"
+
+#name of the VM
+VMNAME="bruno"
+
+#argument for the -cpu parameter
+CPUARCH="POWER9"
+
+#HD disc name
+DISCNAME="disc1.qcow2"
+
+#Ports used for 'hostfwd' and 'gdb' argument
+SSHPORT="1337"
+GDBPORT="13370"

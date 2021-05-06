@@ -1,0 +1,84 @@
+"-----------------------------------------------------------------------
+"SEARCH OPTIONS
+
+"highlights all searched words
+set hlsearch
+"incremental search, searches again for every letter added
+set incsearch
+"ignore case when searching, except when using capital letters
+set ignorecase
+set smartcase
+
+"-----------------------------------------------------------------------
+"INDENT OPTIONS
+
+"sets default identation for general files
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+"makes indentation level easier to visualize
+set listchars:tab:\|_
+set list
+hi SpecialKey ctermfg=18
+
+"-----------------------------------------------------------------------
+"MISC OPTIONS
+
+"highlights syntax
+syntax on
+"show line number
+set number
+set relativenumber
+"show matching parentesis
+set showmatch
+"highlights current line
+set cursorline
+highlight CursorLine cterm=bold ctermbg=240
+highlight CursorLineNr cterm=bold ctermfg=255
+set lazyredraw
+set ttyfast
+cmap rld source ~/.vim/vimrc
+
+"Autosave before switching buffers
+set autowrite
+
+set background=dark
+
+"----------------------------------------------------------------------
+"FILETYPE SPECIFIC COMMANDS
+
+"when editing a C/C++ file, uses C indent
+autocmd FileType c,cpp set cindent
+"quick ab for including libs and defining constants
+autocmd FileType c,cpp ab #i #include | ab #d #define
+
+"----------------------------------------------------------------------
+"KEY remaps
+
+"faster command typing
+nnoremap ; :
+nnoremap ! :!
+"faster moevment between windows
+map <C-j> <C-W>j<C-W>_
+map <C-k> <C-W>k<C-W>_
+map <C-l> <C-W>l<C-W>_
+map <C-h> <C-W>h<C-W>_
+"quick way to compile programs
+nnoremap <f8> :w<Enter>:make OUT_NAME="a.out"<Enter>
+nmap <C-M> <f8>:cw<Enter>
+nnoremap <f9> :make OUT_NAME="a.out" debug<Enter>
+"clear search highlights and redraw the screen
+nnoremap <C-c> :nohl<CR><C-L>
+
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':'zfa}')<CR>
+nnoremap L vu
+nnoremap U vU
+
+"Auto completion of {, still testing
+inoremap { {<CR>}<esc>O
+
+"remap of esc, to speed up on termux
+inoremap <C-x> <Esc>
+vnoremap <C-x> <Esc>
