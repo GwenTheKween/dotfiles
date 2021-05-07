@@ -82,3 +82,25 @@ inoremap { {<CR>}<esc>O
 "remap of esc, to speed up on termux
 inoremap <C-x> <Esc>
 vnoremap <C-x> <Esc>
+nnoremap <C-x> <leader>
+
+"------------------------------------------------------------------------------
+"PLUGIN SETTINGS
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin(data_dir.'/plugged')
+
+Plug 'preservim/nerdtree'
+
+call plug#end()
+
+"------------------------------------------------------------------------------
+"NERDTree stuffs
+
+nnoremap <C-n> :NERDTreeToggle<CR>
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
