@@ -122,7 +122,7 @@ if [ -f $HOME/.qemu_script ]; then
 fi
 
 where(){
-    grep -r $1 ~/fork/qemu --exclude-dir=build | less
+    grep -rE $1 ~/fork/qemu --exclude-dir=build | less
 }
 
 mail(){
@@ -130,3 +130,5 @@ mail(){
     echo "if not, abort sending the mail"
     git send-email --to=qemu-devel@nongnu.org --cc=$(cat ~/cc_list) $1
 }
+
+alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
