@@ -53,6 +53,10 @@ set background=dark
 autocmd FileType c,cpp set cindent
 "quick ab for including libs and defining constants
 autocmd FileType c,cpp ab #i #include | ab #d #define
+"quick way to compile programs
+autocmd FileType c,cpp nnoremap <f8> :w<Enter>:make OUT_NAME="a.out"<Enter>
+autocmd FileType c,cpp nmap <C-M> <f8>:cw<Enter>
+autocmd FileType c,cpp nnoremap <f9> :make OUT_NAME="a.out" debug<Enter>
 
 "----------------------------------------------------------------------
 "KEY remaps
@@ -65,10 +69,6 @@ map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
 map <C-l> <C-W>l<C-W>_
 map <C-h> <C-W>h<C-W>_
-"quick way to compile programs
-nnoremap <f8> :w<Enter>:make OUT_NAME="a.out"<Enter>
-nmap <C-M> <f8>:cw<Enter>
-nnoremap <f9> :make OUT_NAME="a.out" debug<Enter>
 "clear search highlights and redraw the screen
 nnoremap <C-c> :nohl<CR><C-L>
 
