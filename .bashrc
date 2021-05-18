@@ -121,6 +121,10 @@ if [ -f $HOME/.qemu_script ]; then
 	. $HOME/.qemu_script
 fi
 
+if [ -f $HOME/.git_check.sh ]; then
+    . $HOME/.git_check.sh
+fi
+
 where(){
     grep -rE $1 ~/fork/qemu --exclude-dir=build | less
 }
