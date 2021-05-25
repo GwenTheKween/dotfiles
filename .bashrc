@@ -126,7 +126,7 @@ if [ -f $HOME/.git_check.sh ]; then
 fi
 
 where(){
-    grep -rE $1 ~/fork/qemu --exclude-dir=build | less
+    git grep $1 ~/fork/qemu
 }
 
 mail(){
