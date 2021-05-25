@@ -1,0 +1,12 @@
+[user]
+	email = bruno.larsen@eldorado.org.br
+	name = Bruno Larsen (billionai)
+[sendemail]
+	smtpserver = 10.10.71.235
+	smtpserverport = 25
+	smtpdomain = eldorado.org.br
+[core]
+	editor = vim
+[alias]
+	lg = log --oneline --graph
+    patch = "!git diff \"$1\"^!"
