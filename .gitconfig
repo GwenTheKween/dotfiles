@@ -1,0 +1,13 @@
+[user]
+	name = Bruno Larsen
+	email = blarsen@redhat.com
+[core]
+	editor = nvim
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.corp.redhat.com
+	smtpserverport = 587
+[sendmail]
+	smtpuser = blarsen@redhat.com
+[alias]
+	lg = log --abbrev-commit --graph --oneline
