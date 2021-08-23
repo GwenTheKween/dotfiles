@@ -1,3 +1,4 @@
 alias la='ls -lah'
 alias python='python3'
 alias vim='nvim'
+alias vi='nvim'
