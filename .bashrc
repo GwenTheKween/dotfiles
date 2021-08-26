@@ -130,3 +130,11 @@ mail(){
 }
 
 alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
+
+link(){
+    ln -s $PWD/"$1" "$2"
+}
+
+cfgedit(){
+    vim ~/."$1"
+}
