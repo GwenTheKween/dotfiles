@@ -18,8 +18,8 @@ die(){
 getStdInstalls(){
     path="distros/"
     echo "checking OS"
-    os=$(grep -e "^ID=" /etc/os-release | cut -d '"' -f 2)
-    echo "curling from git";
+    os=$(grep -e "^ID=" /etc/os-release | cut -d '=' -f 2)
+    os = ${$os//\"}
     dry_run curl -f -o $FILE https://raw.githubusercontent.com/billionai/dotfiles/master/.installscript/distros/$os.sh
 }
 
