@@ -130,6 +130,7 @@ mail(){
 }
 
 alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
+alias please='sudo $(fc -ln -1)'
 
 link(){
     ln -s $PWD/"$1" "$2"
