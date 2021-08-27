@@ -20,7 +20,7 @@ getStdInstalls(){
     echo "checking OS"
     os=$(grep -e "^ID=" /etc/os-release | cut -d '"' -f 2)
     echo "curling from git";
-    dry_run curl -f -o $FILE https://github.com/billionai/dotfiles/tree/master/.installscript/distros/$os.sh
+    dry_run curl -f -o $FILE https://raw.githubusercontent.com/billionai/dotfiles/master/.installscript/distros/$os.sh
 }
 
 #main function I guess
@@ -90,5 +90,7 @@ elif [[ " ${allPKG[@]} " =~ zsh ]]; then
     NEWSHELL=$(cat /etc/shells | grep zsh)
     dry_run chsh -s $NEWSHELL
 fi
+
+dry_run rm $FILE $0
 
 echo "done"
