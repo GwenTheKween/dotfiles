@@ -1,5 +1,5 @@
 pkgMgr="dnf"
-pkgInstall="install"
+pkgInstall="install -y"
 
 allPKG=(
   "git"

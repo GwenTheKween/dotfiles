@@ -1,5 +1,5 @@
 pkgMgr="dnf"
-pkgInstall="install"
+pkgInstall="install -y"
 
 allPKG=(
   "git"
@@ -11,4 +11,5 @@ allPKG=(
   "neovim"
   "tmux"
   "zsh"
+  "util-linux-user" #used to get chsh
 )

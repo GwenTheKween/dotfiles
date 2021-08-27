@@ -19,7 +19,7 @@ getStdInstalls(){
     path="distros/"
     echo "checking OS"
     os=$(grep -e "^ID=" /etc/os-release | cut -d '=' -f 2)
-    os = ${$os//\"}
+    os = ${os//\"}
     dry_run curl -f -o $FILE https://raw.githubusercontent.com/billionai/dotfiles/master/.installscript/distros/$os.sh
 }
 
@@ -57,7 +57,7 @@ else
 fi
 
 dry_run source $FILE
-if ! dry_run "$pkgMgr $pkgInstall ${allPKG[@]}"; then
+if ! dry_run "sudo $pkgMgr $pkgInstall ${allPKG[@]}"; then
     echo "error installing dependencies, using slow one-at-a-time method"
     for pkg in "${allPKG[@]}"; do
 	#don't need to dry_run here, cause dry_run always returns 0
@@ -73,7 +73,7 @@ elif [[ " ${allPKG[*]} " =~ zsh ]]; then
 fi
 
 echo "git cloning the dotfile repo"
-dry_run "git clone --bare git@github.com:billionai/dotfiles $HOME/.cfg"
+dry_run "git clone --bare https://github.com/billionai/dotfiles.git $HOME/.cfg"
 alias config='git --git-dit=$HOME/.cfg --work-tree=$HOME'
 
 #check if user wants to checkout
@@ -84,7 +84,7 @@ elif [[ -n $BRANCH ]]; then #wants to branch to an existing branch
 fi #otherwise, keep in master branch
 
 echo "setting default configs"
-if ! grep $USER /etc/passwd; then
+if ! grep $USER /etc/passwd >/dev/null; then
     echo "you are not in passwd, cant set some configs"
 elif [[ " ${allPKG[@]} " =~ zsh ]]; then
     NEWSHELL=$(cat /etc/shells | grep zsh)
