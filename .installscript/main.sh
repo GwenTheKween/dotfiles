@@ -20,9 +20,7 @@ getStdInstalls(){
     echo "checking OS"
     os=$(grep -e "^ID=" /etc/os-release | cut -d '"' -f 2)
     echo "curling from git";
-    #use -f on curl!
-    dry_run curl -f -o $FILE #URL TBA
-    #dry_run cp $path$os".sh" $FILE #TODO: actually curl
+    dry_run curl -f -o $FILE https://github.com/billionai/dotfiles/tree/master/.installscript/distros/$os.sh
 }
 
 #main function I guess
