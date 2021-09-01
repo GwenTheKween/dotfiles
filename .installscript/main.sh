@@ -74,7 +74,10 @@ fi
 
 echo "git cloning the dotfile repo"
 dry_run "git clone --bare https://github.com/billionai/dotfiles.git $HOME/.cfg"
-alias config='git --git-dit=$HOME/.cfg --work-tree=$HOME'
+dry_run alias config='git --git-dit=$HOME/.cfg --work-tree=$HOME'
+dry_run "config config --local status.showUntrackedFiles no"
+dry_run "config reset --hard"
+dry_run "config remote set-url origin git@github.com:billionai/dotfiles.git"
 
 #check if user wants to checkout
 if [[ $NEWBRANCH == true ]]; then #wants to create a new branch
@@ -88,9 +91,9 @@ if ! grep $USER /etc/passwd >/dev/null; then
     echo "you are not in passwd, cant set some configs"
 elif [[ " ${allPKG[@]} " =~ zsh ]]; then
     NEWSHELL=$(cat /etc/shells | grep zsh)
-    dry_run chsh -s $NEWSHELL
+#    dry_run chsh -s $NEWSHELL
 fi
 
-dry_run rm $FILE $0
+#dry_run rm $FILE $0
 
 echo "done"
