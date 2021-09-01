@@ -72,25 +72,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 
@@ -119,23 +100,15 @@ if [ -f $HOME/.qemu_script ]; then
 	. $HOME/.qemu_script
 fi
 
-where(){
-    grep -rE $1 ~/fork/qemu --exclude-dir=build | less
-}
-
-mail(){
-    echo "Are you sure you have tested compiling the code with and without TCG?"
-    echo "if not, abort sending the mail"
-    git send-email --to=qemu-devel@nongnu.org --cc=$(cat ~/cc_list) $1
-}
-
-alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
-alias please='sudo $(fc -ln -1)'
-
-link(){
-    ln -s $PWD/"$1" "$2"
-}
-
-cfgedit(){
-    vim ~/."$1"
+function rpmbuildlocal
+{
+  MAKEFLAGS= rpmbuild \
+    --define "_topdir $PWD" \
+    --define "_builddir $PWD" \
+    --define "_rpmdir $PWD" \
+    --define "_sourcedir $PWD" \
+    --define "_specdir $PWD" \
+    --define "_srcrpmdir $PWD" \
+    --define "_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm" \
+    "$@"; rmdir &>/dev/null BUILDROOT;
 }
