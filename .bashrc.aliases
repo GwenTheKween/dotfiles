@@ -22,6 +22,7 @@ alias python='python3'
 alias vim='nvim'
 alias vi='nvim'
 alias ranger='source ranger'
+alias gdb="gdb -q"
 
 alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
 alias please='sudo $(fc -ln -1)'
@@ -30,6 +31,10 @@ function link(){
     ln -s $PWD/"$1" "$2"
 }
 
-function cfgedit(){
+function cfg(){
     vim ~/."$1"
+}
+
+function motion_patch(){
+    diff -u <(sed -n 's/^-//p' $1) <(sed -n 's/^\+//p' $1)
 }
