@@ -11,4 +11,3 @@
 	smtpuser = blarsen@redhat.com
 [alias]
 	lg = log --abbrev-commit --graph --oneline
-	patch="!f(){ git diff \"$1^\" \"$1\";}; f"
