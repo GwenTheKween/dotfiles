@@ -96,6 +96,7 @@ endif
 call plug#begin(data_dir.'/plugged')
 
 Plug 'preservim/nerdtree'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -109,3 +110,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 "cscope
 
 source ~/.vim/cscope_maps.vim
+
+set nocompatible
+filetype plugin on
+syntax on
