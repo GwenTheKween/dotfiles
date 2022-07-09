@@ -73,11 +73,15 @@ elif [[ " ${allPKG[*]} " =~ zsh ]]; then
 fi
 
 echo "git cloning the dotfile repo"
-dry_run "git clone --bare https://github.com/billionai/dotfiles.git $HOME/.cfg"
-dry_run alias config='git --git-dit=$HOME/.cfg --work-tree=$HOME'
-dry_run "config config --local status.showUntrackedFiles no"
-dry_run "config reset --hard"
-dry_run "config remote set-url origin git@github.com:billionai/dotfiles.git"
+dry_run git clone --bare https://github.com/billionai/dotfiles.git $HOME/.cfg
+dry_run git --git-dit=$HOME/.cfg --work-tree=$HOME config --local status.showUntrackedFiles no
+dry_run git --git-dit=$HOME/.cfg --work-tree=$HOME reset --hard
+dry_run git --git-dit=$HOME/.cfg --work-tree=$HOME remote set-url origin git@github.com:billionai/dotfiles.git
+
+echo "adding DISTRO to .bashrc; this is untested, please verify manually"
+os=$(grep -e "^ID=" /etc/os-release | cut -d '=' -f 2)
+os = ${os//\"}
+dry_run echo "DISTRO=$os" >> .bashrc.aliases
 
 #check if user wants to checkout
 if [[ $NEWBRANCH == true ]]; then #wants to create a new branch
