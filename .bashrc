@@ -99,16 +99,3 @@ fi
 if [ -f $HOME/.qemu_script ]; then
 	. $HOME/.qemu_script
 fi
-
-function rpmbuildlocal
-{
-  MAKEFLAGS= rpmbuild \
-    --define "_topdir $PWD" \
-    --define "_builddir $PWD" \
-    --define "_rpmdir $PWD" \
-    --define "_sourcedir $PWD" \
-    --define "_specdir $PWD" \
-    --define "_srcrpmdir $PWD" \
-    --define "_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm" \
-    "$@"; rmdir &>/dev/null BUILDROOT;
-}

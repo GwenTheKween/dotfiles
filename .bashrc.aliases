@@ -27,6 +27,9 @@ alias ranger='source ranger'
 
 alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
 alias please='sudo $(fc -ln -1)'
+alias doc='nvim ~/Documents/journal/$(date -d "this friday" +%Y_%m_%d)'
+alias lastdoc='nvim ~/Documents/journal/$(date -d "last friday" +%Y_%m_%d)'
+alias nextdoc='nvim ~/Documents/journal/$(date -d "next friday" +%Y_%m_%d)'
 
 function link(){
     ln -s $PWD/"$1" "$2"
@@ -55,3 +58,18 @@ function update() {
         sudo flatpak repair && sudo flatpak uninstall --unused && sudo flatpak upgrade
     fi
 }
+
+function rpmbuildlocal
+{
+  MAKEFLAGS= rpmbuild \
+    --define "_topdir $PWD" \
+    --define "_builddir $PWD" \
+    --define "_rpmdir $PWD" \
+    --define "_sourcedir $PWD" \
+    --define "_specdir $PWD" \
+    --define "_srcrpmdir $PWD" \
+    --define "_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm" \
+    "$@"; rmdir &>/dev/null BUILDROOT;
+}
+DISTRO=fedora
+CLANG="CC_FOR_TARGET=clang CXX_FOR_TARGET=clang++"
