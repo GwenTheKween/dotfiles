@@ -14,9 +14,9 @@ set smartcase
 
 "sets default identation for general files
 set autoindent
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 "makes indentation level easier to visualize
 set listchars:tab:\|_
@@ -35,8 +35,8 @@ set relativenumber
 set showmatch
 "highlights current line
 set cursorline
-highlight CursorLine cterm=bold ctermbg=240
-highlight CursorLineNr cterm=bold ctermfg=255
+"highlight CursorLine cterm=bold ctermbg=240
+"highlight CursorLineNr cterm=bold ctermfg=255
 set lazyredraw
 set ttyfast
 cmap rld source ~/.vim/vimrc
@@ -44,7 +44,13 @@ cmap rld source ~/.vim/vimrc
 "Autosave before switching buffers
 set autowrite
 
-set background=dark
+set background=light
+nnoremap <C-l> :set background=dark<CR>
+cnoremap <C-l> set background=dark<CR>
+colorscheme solarized
+
+"Disable mouse
+set mouse=
 
 "----------------------------------------------------------------------
 "FILETYPE SPECIFIC COMMANDS
@@ -61,10 +67,10 @@ autocmd FileType c,cpp ab #i #include | ab #d #define
 nnoremap ; :
 nnoremap ! :!
 "faster moevment between windows
-map <C-j> <C-W>j<C-W>_
-map <C-k> <C-W>k<C-W>_
-map <C-l> <C-W>l<C-W>_
-map <C-h> <C-W>h<C-W>_
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+map <C-h> <C-W>h
 "quick way to compile programs
 nnoremap <f8> :w<Enter>:make OUT_NAME="a.out"<Enter>
 nmap <C-M> <f8>:cw<Enter>
@@ -75,9 +81,6 @@ nnoremap <C-c> :nohl<CR><C-L>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':'zfa}')<CR>
 nnoremap L vu
 nnoremap U vU
-
-"Auto completion of {, still testing
-inoremap { {<CR>}<esc>O
 
 "remap of esc, to speed up on termux
 inoremap <C-x> <Esc>
