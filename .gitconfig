@@ -4,10 +4,8 @@
 [core]
 	editor = nvim
 [sendemail]
-	smtpencryption = tls
-	smtpserver = smtp.corp.redhat.com
-	smtpserverport = 587
-[sendmail]
-	smtpuser = blarsen@redhat.com
+	smtpEncryption = tls
+	smtpServer = smtp.corp.redhat.com
+	smtpServerPort = 587
 [alias]
 	lg = log --abbrev-commit --graph --oneline
