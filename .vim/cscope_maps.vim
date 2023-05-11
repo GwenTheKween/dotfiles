@@ -91,14 +91,14 @@ if has("cscope")
     "TODO: MAKE THIS WORK WITH BOTH VIM AND NEOVIM; FOR NOW IT ONLY WORKS WITH
     "NEOVIM
 
-    nmap <C-Space>v :cs find s <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space>d :cs find g <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-Space>I :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-Space>i :cs find d <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g>v :cs find s <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g>d :cs find g <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-g>I :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-g>i :cs find d <C-R>=expand("<cword>")<CR><CR>	
 
 
     " Using 'CTRL-spacebar' twice then a search type
@@ -109,14 +109,14 @@ if has("cscope")
     " can be simulated roughly via:
     "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>	
 
-    nmap <C-Space><C-Space>v :scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-Space><C-Space>d :scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-Space><C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-Space><C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-Space><C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-Space><C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-Space><C-Space>I :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
-    nmap <C-Space><C-Space>i :scs find d <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-g><C-Space>v :scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-g><C-Space>d :scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-g><C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-g><C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-g><C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-g><C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-g><C-Space>I :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+    nmap <C-g><C-Space>i :scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
     " Hitting CTRL-space then ctrl+search type does a vertical 
@@ -125,14 +125,14 @@ if has("cscope")
     " (Note: you may wish to put a 'set splitright' in your .vimrc
     " if you prefer the new window on the right instead of the left
 
-    nmap <C-Space><C-v> :vert scs find s <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space><C-d> :vert scs find g <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space><C-c> :vert scs find c <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space><C-t> :vert scs find t <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space><C-e> :vert scs find e <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-Space><C-f> :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-Space><C-I> :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
-    nmap <C-Space><C-i> :vert scs find d <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g><C-v> :vert scs find s <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g><C-d> :vert scs find g <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g><C-c> :vert scs find c <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g><C-t> :vert scs find t <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g><C-e> :vert scs find e <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-g><C-f> :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-g><C-I> :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+    nmap <C-g><C-i> :vert scs find d <C-R>=expand("<cword>")<CR><CR>	
 
 
     """"""""""""" key map timeouts
