@@ -71,5 +71,61 @@ function rpmbuildlocal
     --define "_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm" \
     "$@"; rmdir &>/dev/null BUILDROOT;
 }
+
+function ping() {
+  # Parsing arguments
+  local COMMAND="$1"
+  local EMAIL="$2"
+  local UNDERSTOOD="false"
+  if [[ $COMMAND == "start" || $COMMAND == "reset" ]]; then
+    UNDERSTOOD="true"
+  fi
+
+  # Help text
+  if [[ "$#" -eq 0 || "$COMMAND" == "help" || "$UNDERSTOOD" == "false" ]]
+  then
+    echo "USAGE:"
+    echo "  $0 start <email identifier>"
+    echo "  $0 reset <email identifier"
+    echo
+    echo "DESCRIPTION:"
+    echo "  add a reminder to ping patches."
+    echo "  start reminds you in 2 weeks."
+    echo "  reset reminds you in 1 week."
+    if [[ "$UNDERSTOOD" == "false" ]]; then
+      return 1
+    else
+      return 0
+    fi
+  fi
+
+  # Check presence of AT command
+  which at >/dev/null
+  if [[ $? != 0 ]] ; then
+    echo "$0: AT utility is required but not installed on your system."
+    echo "And remember to enable atd (sysctl enable atd)."
+    return
+  fi
+
+  # Amount of weeks to be reminded
+  local TIME=""
+  if [[ "$COMMAND" == "start" ]]; then
+    TIME="2"
+  else
+    TIME="1"
+  fi
+  TIME="11 AM + $TIME weeks"
+  echo "reminding to ping $EMAIL in $TIME"
+
+  # Run the command.  We test if the following line is in the output
+  # Can't open /run/atd.pid to signal atd. No atd running?
+  # because this message means that at failed, but still returns 0
+  if [[ $(echo 'notify-send "ping: $EMAIL"' | at "$TIME" 2>&1 | grep "Can't open" | wc -c) -ne 0 ]]; then
+    echo "Couldn't set the time. Is atd running?"
+    return 1
+  fi
+  return 0
+}
+
 DISTRO=fedora
 CLANG="CC_FOR_TARGET=clang CXX_FOR_TARGET=clang++"
