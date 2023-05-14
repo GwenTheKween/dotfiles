@@ -72,7 +72,7 @@ function rpmbuildlocal
     "$@"; rmdir &>/dev/null BUILDROOT;
 }
 
-function ping() {
+function patch-ping() {
   # Parsing arguments
   local COMMAND="$1"
   local EMAIL="$2"
