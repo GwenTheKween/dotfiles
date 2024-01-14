@@ -162,7 +162,8 @@ if has("cscope")
     " timeoutlent (default: 1000 = 1 second, which is sluggish) is used.
     "
     "set ttimeoutlen=100
-
+else
+    echo "No cscope"
 endif
 
 
