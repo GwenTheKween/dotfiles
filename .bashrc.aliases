@@ -23,13 +23,14 @@ alias vim='echo "wrong editor" && sleep 1 && nvim'
 alias vi='echo "wrong editor" && sleep 1 && nvim'
 alias ranger='source ranger'
 alias gdb='gdb -q'
+alias objdump='objdump -w'
 alias ranger='source ranger'
 
 alias config='git --git-dir=$HOME/.cfg --work-tree=$HOME'
 alias please='sudo $(fc -ln -1)'
 alias doc='nvim ~/Documents/journal/$(date -d "this friday" +%Y_%m_%d)'
 alias lastdoc='nvim ~/Documents/journal/$(date -d "last friday" +%Y_%m_%d)'
-alias nextdoc='nvim ~/Documents/journal/$(date -d "next friday" +%Y_%m_%d)'
+alias nextdoc='nvim ~/Documents/journal/$(date -d "friday+1 week" +%Y_%m_%d)'
 
 function link(){
     ln -s $PWD/"$1" "$2"
@@ -127,5 +128,30 @@ function patch-ping() {
   return 0
 }
 
+function motion-review() {
+  # Attempting to parse the arguments
+  local FILE="$1"
+
+  # Help text if no arguments or args failed
+  if [[ "$#" -eq 0 && ! -f "$FILE" ]]
+  then
+    echo "USAGE:"
+    echo "  $0 <path/to/file>"
+    echo
+    echo "DESCRIPTION:"
+    echo "  print the lines of a code motion patch that differ by more than identation"
+    if [[ "$FILE" == "-h" ]]; then
+      return 0
+    else
+      return 1
+    fi
+  fi
+
+  diff -u <(sed -n 's/^-\s*//p' "$FILE") <(sed -n 's/^+\s*//p' "$FILE")
+}
+
 DISTRO=fedora
 CLANG="CC_FOR_TARGET=clang CXX_FOR_TARGET=clang++"
+CLANG17="CC_FOR_TARGET=clang-17 CXX_FOR_TARGET=clang++-17"
+CLANG16="CC_FOR_TARGET=clang-16 CXX_FOR_TARGET=clang++-16"
+CLANG15="CC_FOR_TARGET=clang-15 CXX_FOR_TARGET=clang++-15"
