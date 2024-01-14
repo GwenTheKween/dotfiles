@@ -47,7 +47,7 @@ set autowrite
 set background=light
 nnoremap <C-l> :set background=dark<CR>
 cnoremap <C-l> set background=dark<CR>
-colorscheme solarized
+"colorscheme solarized
 
 "Disable mouse
 set mouse=
@@ -79,8 +79,8 @@ nnoremap <f9> :make OUT_NAME="a.out" debug<Enter>
 nnoremap <C-c> :nohl<CR><C-L>
 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':'zfa}')<CR>
-nnoremap L vu
-nnoremap U vU
+nnoremap L gu
+nnoremap U gU
 
 "remap of esc, to speed up on termux
 inoremap <C-x> <Esc>
