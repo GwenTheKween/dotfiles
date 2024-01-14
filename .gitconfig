@@ -1,5 +1,5 @@
 [user]
-	name = Bruno Larsen
+	name = Guinevere Larsen
 	email = blarsen@redhat.com
 [core]
 	editor = nvim
@@ -9,3 +9,10 @@
 	smtpServerPort = 587
 [alias]
 	lg = log --abbrev-commit --graph --oneline
+	gdb-email = send-email --to=gdb-patches@sourceware.org
+[init]
+	defaultBranch = main
+[b4]
+	midmask = https://inbox.sourceware.org/gdb-patches/%s
+	linkmask = https://inbox.sourceware.org/gdb-patches/%s
+	searchmask = https://inbox.sourceware.org/gdb-patches/all/?x=m&t=1&q=%s
