@@ -74,9 +74,9 @@ fi
 
 echo "git cloning the dotfile repo"
 dry_run git clone --bare https://github.com/billionai/dotfiles.git $HOME/.cfg
-dry_run git --git-dit=$HOME/.cfg --work-tree=$HOME config --local status.showUntrackedFiles no
-dry_run git --git-dit=$HOME/.cfg --work-tree=$HOME reset --hard
-dry_run git --git-dit=$HOME/.cfg --work-tree=$HOME remote set-url origin git@github.com:billionai/dotfiles.git
+dry_run git --git-dir=$HOME/.cfg --work-tree=$HOME config --local status.showUntrackedFiles no
+dry_run git --git-dir=$HOME/.cfg --work-tree=$HOME reset --hard
+dry_run git --git-dir=$HOME/.cfg --work-tree=$HOME remote set-url origin git@github.com:billionai/dotfiles.git
 
 echo "adding DISTRO to .bashrc; this is untested, please verify manually"
 os=$(grep -e "^ID=" /etc/os-release | cut -d '=' -f 2)

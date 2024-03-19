@@ -152,8 +152,8 @@ function motion-review() {
   diff -u <(sed -n 's/^-\s*//p' "$FILE") <(sed -n 's/^+\s*//p' "$FILE")
 }
 
-DISTRO=fedora
 CLANG="CC_FOR_TARGET=clang CXX_FOR_TARGET=clang++"
 CLANG17="CC_FOR_TARGET=clang-17 CXX_FOR_TARGET=clang++-17"
 CLANG16="CC_FOR_TARGET=clang-16 CXX_FOR_TARGET=clang++-16"
 CLANG15="CC_FOR_TARGET=clang-15 CXX_FOR_TARGET=clang++-15"
+DISTRO=fedora
