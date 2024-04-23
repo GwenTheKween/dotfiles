@@ -37,7 +37,7 @@ function link(){
 }
 
 function cfg(){
-    vim ~/."$1"
+    nvim ~/."$1"
 }
 
 function motion_patch(){
@@ -150,6 +150,10 @@ function motion-review() {
   fi
 
   diff -u <(sed -n 's/^-\s*//p' "$FILE") <(sed -n 's/^+\s*//p' "$FILE")
+}
+
+function beaker () {
+  ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" root@$@
 }
 
 CLANG="CC_FOR_TARGET=clang CXX_FOR_TARGET=clang++"
